@@ -38,17 +38,53 @@
         </div>
     </nav>
 
-    <button onclick=deleteProd("65aa54aa187e5c001814c6a8")>AAA</button>
-
     <main>
+        <div class="d-flex">
+            <img src="./assets/media/gasparriShop header.png" class="mx-auto col-6 col-md-4 col-lg-2 m-3">
+        </div>
+        <div class="container">
+            <div class="row mx-auto">
 
-        <aside>
+                <main class="col-7" id="formPanel">
+                    <form id="concert-form">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nome prodotto</label>
+                            <input class="form-control" id="nomeProdotto" aria-describedby="emailHelp" required />
+                        </div>
 
-        </aside>
+                        <div class="mb-3">
+                            <label for="price" class="form-label">Prezzo</label>
+                            <input type="number" min="0" class="form-control" id="prezzoProdotto"
+                                aria-describedby="emailHelp" required />
+                        </div>
 
-        <main>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Descrizione</label>
+                            <input class="form-control" id="descrizioneProdotto" aria-describedby="emailHelp"
+                                required />
+                        </div>
 
-        </main>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Brand</label>
+                            <input class="form-control" id="brandProdotto" aria-describedby="emailHelp" required />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Url Immagine</label>
+                            <input class="form-control" id="urlImgProdotto" aria-describedby="emailHelp" required />
+                        </div>
+
+                        <button type="submit" onclick="sendProdotto(event)" class="btn btn-primary">Submit</button>
+                    </form>
+
+                </main>
+
+                <aside class="col-5 d-flex flex-column" id="productsPanel">
+
+                </aside>
+            </div>
+
+        </div>
 
     </main>
 
