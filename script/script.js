@@ -129,18 +129,17 @@ const modaleProdotto = function (idProdottoDaEsporre) {
             <div class="modal fade" id="modaleEsponiProdotto" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modalLabel">${prodottoDaEsporre.name}</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                        <div class="modal-header d-flex flex-column align-items-end">
+                        <h4 class="modal-title" id="modalLabel">${prodottoDaEsporre.brand}</h4>
+                        <h5 class="modal-title" id="modalLabel">${prodottoDaEsporre.name}</h5>
                         </div>
                         <div class="modal-body">
-                            ${prodottoDaEsporre.description}
+                        ${prodottoDaEsporre.description}
+                        <img class="img-fluid mx-auto" style="max-height: 350px" src="${prodottoDaEsporre.imageUrl}"
                         </div>
                         <div class="modal-footer">
-                        <button type="button" class="btn btn-success">Aggiugni al carrello €${prodottoDaEsporre.price}</button>
-                        <a  href="./index.html"><button type="button" class="btn btn-secondary">Chiudi</button></a>
+                        <a  href="./index.html"><button type="button" class="btn btn-success" onclick="aggiungiAlCarrello('${prodottoDaEsporre.id}')">Aggiugni al carrello €${prodottoDaEsporre.price}</button></a>
+                        <a  href="./index.html"><button type="button" class="btn btn-secondary">Chiudi</button>
                         </div>
                     </div>
                 </div>
