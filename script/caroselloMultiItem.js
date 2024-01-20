@@ -36,7 +36,7 @@ const inserisciCarosello = function (arrayProd) {
             <div class="card-img">
                 <img src="${arrayProd[1].imageUrl}" class="img-fluid">
             </div>
-            <div class="card-img-overlay caroselloItemNome">${arrayProd[2].name}</div>
+            <div class="card-img-overlay caroselloItemNome">${arrayProd[1].name}</div>
         </div>
     </div>
 </div>
@@ -47,7 +47,7 @@ const inserisciCarosello = function (arrayProd) {
             <div class="card-img">
                 <img src="${arrayProd[2].imageUrl}" class="img-fluid">
             </div>
-            <div class="card-img-overlay caroselloItemNome">${arrayProd[3].name}</div>
+            <div class="card-img-overlay caroselloItemNome">${arrayProd[2].name}</div>
         </div>
     </div>
 </div>
@@ -57,7 +57,7 @@ const inserisciCarosello = function (arrayProd) {
             <div class="card-img">
                 <img src="${arrayProd[3].imageUrl}" class="img-fluid">
             </div>
-            <div class="card-img-overlay caroselloItemNome">${arrayProd[4].name}</div>
+            <div class="card-img-overlay caroselloItemNome">${arrayProd[3].name}</div>
         </div>
     </div>
 </div>
@@ -67,7 +67,7 @@ const inserisciCarosello = function (arrayProd) {
             <div class="card-img">
                 <img src="${arrayProd[4].imageUrl}" class="img-fluid">
             </div>
-            <div class="card-img-overlay caroselloItemNome">${arrayProd[5].name}</div>
+            <div class="card-img-overlay caroselloItemNome">${arrayProd[4].name}</div>
         </div>
     </div>
 </div>
@@ -77,7 +77,7 @@ const inserisciCarosello = function (arrayProd) {
             <div class="card-img">
                 <img src="${arrayProd[5].imageUrl}" class="img-fluid">
             </div>
-            <div class="card-img-overlay caroselloItemNome">${arrayProd[6].name}</div>
+            <div class="card-img-overlay caroselloItemNome">${arrayProd[5].name}</div>
         </div>
     </div>
 </div>`

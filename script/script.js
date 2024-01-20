@@ -114,9 +114,8 @@ const leggiSessionPassword = function () {
 }
 
 const modaleProdotto = function (prodottoDaEsporre) {
-    function showBootstrapModal() {
-        let modalHTML = `
-        <div class="modal fade" id="dynamicModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    let modalHTML = `
+        <div class="modal fade" id="modaleEsponiProdotto" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -137,12 +136,12 @@ const modaleProdotto = function (prodottoDaEsporre) {
         </div>
         `
 
-        // Aggiungi il modale al body
-        document.body.insertAdjacentHTML('beforeend', modalHTML)
+    // Aggiungi il modale al body
+    document.body.insertAdjacentHTML('beforeend', modalHTML)
 
-        // Inizializza e mostra il modale
-        $('#dynamicModal').modal('show')
-    }
+    // Inizializza e mostra il modale
+    //$('#modaleEsponiProdotto').modal('show')
+
 }
 //////////////////////////////////////////////////ESECUZIONE//////////////////////////////////////////////////////////
 sincronizzaProdottiScaricati()
