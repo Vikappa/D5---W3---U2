@@ -26,25 +26,14 @@ class prodottoRicevuto {
 }
 /////////////////////////////////////// VARIABILI COMUNI PAGINA ///////////////////////////////////////////////////////
 let adminPassword = "abc"
-///////////////////////////////////////////////// DOM CONTROL ///////////////////////////////////////////////////////
-const updateLoginLogoutLinks = function () {
-    let inputPassword = localStorage.getItem("passwordGS")
+let inputPassword
+let sessionPassword
 
-    if (inputPassword === adminPassword) {
-        document.getElementById('adminTools').classList.remove('d-none')
-    } else {
-        document.getElementById('adminTools').classList.add('d-none')
-
-    }
-}
-
-
+inputPassword
 ////////////////////////////////////////////////// METODI ////////////////////////////////////////////////////////////
 const riempiGlobal = function (arrayGlobal) {
     let stringaGlobal = ``
     for (let index = 0; index < arrayGlobal.length; index++) {
-        console.log(arrayGlobal[index])
-
         stringaGlobal = stringaGlobal +
             `<div class="card cardGlobal">
 <div class="card-img-overlay">
@@ -95,7 +84,27 @@ const sincronizzaProdottiScaricati = function () {
         })
 }
 
-sincronizzaProdottiScaricati()
+const scriviPassWord = function (inputPassword) {
+    sessionStorage.setItem('adminTools', inputPassword)
+    sessionPassword = inputPassword
+}
+///////////////////////////////////////////////// DOM CONTROL ///////////////////////////////////////////////////////
+document.getElementById('passForm').addEventListener('submit', function (event) {
+    event.preventDefault()
+    let inputPassword = document.getElementById('navbarPassword').value
+    document.getElementById('navbarPassword').value = ``
+
+
+    if (inputPassword === adminPassword) {
+        document.getElementById('adminTools').classList.remove('d-none')
+    } else {
+        document.getElementById('adminTools').classList.add('d-none')
+
+    }
+
+    scriviPassWord(inputPassword)
+})
+
 
 //////////////////////////////////////////////////ESECUZIONE//////////////////////////////////////////////////////////
-updateLoginLogoutLinks()
+sincronizzaProdottiScaricati()
