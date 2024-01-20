@@ -143,18 +143,18 @@ h4 {
 
 @media (min-width: 768px) {
     .cardGlobal {
-        height: 20vw;
-        width: 20vw;
-        overflow: hidden;
-        margin: 7px;
+        height: 20vw !important;
+        width: 20vw !important;
+        overflow: hidden !important;
+        margin: 7px !important;
     }
 }
 
 @media (min-width: 992px) {
     .cardGlobal {
-        height: 10vw;
-        width: 10vw;
-        overflow: hidden;
-        margin: 7px;
+        height: 10vw !important;
+        width: 10vw !important;
+        overflow: hidden !important;
+        margin: 7px !important;
     }
 }
