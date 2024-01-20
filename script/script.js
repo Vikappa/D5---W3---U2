@@ -22,7 +22,6 @@ class prodottoRicevuto {
         </div>
         </div>`
     }
-
 }
 /////////////////////////////////////// VARIABILI COMUNI PAGINA ///////////////////////////////////////////////////////
 let adminPassword = "abc"
@@ -35,7 +34,7 @@ const riempiGlobal = function (arrayGlobal) {
     let stringaGlobal = ``
     for (let index = 0; index < arrayGlobal.length; index++) {
         stringaGlobal = stringaGlobal +
-            `<div class="card cardGlobal">
+            `<div class="card cardGlobal" onclick="${modaleProdotto(arrayGlobal[index])}">
 <div class="card-img-overlay">
   <h5 class="card-title">${arrayGlobal[index].name}</h5>
   <p class="card-text"><small class="text-white">€${arrayGlobal[index].price}</small></p>
@@ -111,6 +110,38 @@ const leggiSessionPassword = function () {
         document.getElementById('adminTools').classList.remove('d-none')
     } else {
         document.getElementById('adminTools').classList.add('d-none')
+    }
+}
+
+const modaleProdotto = function (prodottoDaEsporre) {
+    function showBootstrapModal() {
+        let modalHTML = `
+        <div class="modal fade" id="dynamicModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel">Titolo del Modale</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Contenuto del modale...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+                        <button type="button" class="btn btn-primary">Salva cambiamenti</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        `
+
+        // Aggiungi il modale al body
+        document.body.insertAdjacentHTML('beforeend', modalHTML)
+
+        // Inizializza e mostra il modale
+        $('#dynamicModal').modal('show')
     }
 }
 //////////////////////////////////////////////////ESECUZIONE//////////////////////////////////////////////////////////

@@ -84,7 +84,6 @@ h4 {
     display: flex;
 }
 
-/* medium and up screens */
 @media (min-width: 768px) {
 
     .carousel-inner .carousel-item-end.active,
@@ -120,7 +119,9 @@ h4 {
     object-fit: cover !important;
     object-position: center !important;
     overflow: hidden !important;
+    transition: transform 0.3s ease, filter 0.3s ease;
 }
+
 
 .caroselloCarta img {
     width: 100% !important;
@@ -138,16 +139,31 @@ h4 {
     width: 30vw !important;
     overflow: hidden !important;
     margin: 1px !important;
+    transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 
-@media (min-width: 768px) {
+.cardGlobal:hover {
+    transform: scale(1.15);
+    filter: brightness(120%);
+}
+
+@media (min-width: 576px) {
     .cardGlobal {
-        height: 20vw !important;
-        width: 20vw !important;
+        height: 30vw !important;
+        width: 30vw !important;
         overflow: hidden !important;
         margin: 7px !important;
     }
+}
+
+@media (min-width: 768px) {
+
+    .cardGlobal:hover {
+        transform: scale(1.15);
+        filter: brightness(130%);
+    }
+
 }
 
 @media (min-width: 992px) {

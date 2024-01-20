@@ -77,8 +77,8 @@
 
                         <div class="mb-3">
                             <label for="description" class="form-label">Descrizione</label>
-                            <input class="form-control" id="descrizioneProdotto" aria-describedby="emailHelp"
-                                required />
+                            <textarea class="form-control" id="descrizioneProdotto" required
+                                style="height: 6rem;"></textarea>
                         </div>
 
                         <div class="mb-3">
@@ -93,6 +93,13 @@
 
                         <button type="submit" onclick="sendProdotto(event)" class="btn btn-primary">Submit</button>
                     </form>
+
+                    <div class="col-11 col-lg my-4">
+                        <h3 class="m-0 p-0">Prodotti per sezione suggeriti:</h3>
+                        <p class="m-0 mt-2 p-0 lh-1">Puoi cambiare l'ordine dei prodotti in vetrina. I primi sei saranno
+                            esposti
+                            tra i suggerimenti</p>
+                    </div>
 
                 </main>
 
