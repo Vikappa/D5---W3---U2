@@ -1,3 +1,5 @@
+let prodottiScaricati = []
+
 class prodottoRicevuto {
     constructor(name, description, brand, imageUrl, price, _id = "not generated", userID = "not generated", createdAt = "not generated", updatedat = "not generated", __V = "not generated") {
         this.name = name
@@ -114,44 +116,40 @@ const leggiSessionPassword = function () {
 
 const chiudiModale = function () {
 
-    document.querySelector('#modaleEsponiProdotto').remove()
-    //document.querySelector('.modal-backdrop fade show').classList.remove("show")
-    console.log(document.getElementsByClassName('modal-backdrop fade show')[0].remove())
+    //document.querySelector('#modaleEsponiProdotto').remove()
 }
+
+let prodottoDaEsporre = prodottiScaricati.find(prodotto => prodotto._id === idProdottoDaEsporre)
 
 const modaleProdotto = function (idProdottoDaEsporre) {
 
     let prodottoDaEsporre = prodottiScaricati.find(prodotto => prodotto._id === idProdottoDaEsporre)
 
     let modalHTML = `
-        <div class="modal fade" id="modaleEsponiProdotto" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalLabel">${prodottoDaEsporre.name}</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        ${prodottoDaEsporre.description}
-                    </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Aggiugni al carrello €${prodottoDaEsporre.price}</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="chiudiModale()">Chiudi</button>
+            <div class="modal fade" id="modaleEsponiProdotto" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalLabel">${prodottoDaEsporre.name}</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            ${prodottoDaEsporre.description}
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-success">Aggiugni al carrello €${prodottoDaEsporre.price}</button>
+                        <a  href="./index.html"><button type="button" class="btn btn-secondary">Chiudi</button></a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        `
+            `
+    document.body.innerHTML += modalHTML
+    $('#modaleEsponiProdotto').modal('show')
 
-    // Aggiungi il modale al body
-    document.body.insertAdjacentHTML('beforeend', modalHTML)
-    // Inizializza e mostra il modale
-    let modaleFinale = new bootstrap.Modal(document.getElementById('modaleEsponiProdotto'))
 
-    // Mostra il modale
-    modaleFinale.show()
 }
 //////////////////////////////////////////////////ESECUZIONE//////////////////////////////////////////////////////////
 sincronizzaProdottiScaricati()

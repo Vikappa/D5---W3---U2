@@ -1,5 +1,5 @@
 
-let prodottiScaricati = []
+let prodottiCarosello = []
 
 class itemCarosello {
     constructor(name, description, brand, imageUrl, price, _id = "not generated", userID = "not generated", createdAt = "not generated", updatedat = "not generated", __V = "not generated") {
@@ -101,7 +101,7 @@ const inserisciCarosello = function (arrayProd) {
 }
 
 const download6 = function () {
-    prodottiScaricati = []
+    prodottiCarosello = []
     fetch("https://striveschool-api.herokuapp.com/api/product/", {
         headers: {
             "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWFhMmY2MDE4N2U1YzAwMTgxNGM1ZjYiLCJpYXQiOjE3MDU2NTIwNjQsImV4cCI6MTcwNjg2MTY2NH0.xxf1hSNP01Dcmf12PU4LL1ffA0S89nYHE4SCxrhtkwY"
@@ -128,11 +128,11 @@ const download6 = function () {
                     data[i].updatedat,
                     data[i].__V,
                 )
-                if (prodottiScaricati.length < 7) {
-                    prodottiScaricati.push(newProdottoScaricato)
+                if (prodottiCarosello.length < 7) {
+                    prodottiCarosello.push(newProdottoScaricato)
                 }
             }
-            inserisciCarosello(prodottiScaricati)
+            inserisciCarosello(prodottiCarosello)
 
         })
         .catch((err) => {

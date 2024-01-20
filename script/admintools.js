@@ -131,7 +131,6 @@ const sendProdotto = function (event) {
     sendProd(daInviare)
 }
 
-let prodottiScaricati = []
 
 
 
