@@ -100,7 +100,7 @@ const inserisciCarosello = function (arrayProd) {
 
 }
 
-const sincronizzaProdottiScaricati = function () {
+const download6 = function () {
     prodottiScaricati = []
     fetch("https://striveschool-api.herokuapp.com/api/product/", {
         headers: {
@@ -140,7 +140,7 @@ const sincronizzaProdottiScaricati = function () {
         })
 }
 
-sincronizzaProdottiScaricati()
+download6()
 
 
 

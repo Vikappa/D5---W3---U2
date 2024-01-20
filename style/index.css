@@ -103,7 +103,8 @@ h4 {
     transform: translateX(0);
 }
 
-.caroselloItemNome {
+.caroselloItemNome,
+.cardGlobal {
     color: white;
     font-size: 2rem;
     text-shadow:
@@ -130,4 +131,30 @@ h4 {
 
 @media (min-width: 768px) {
     .caroselloCarta img {}
+}
+
+.cardGlobal {
+    height: 30vw !important;
+    width: 30vw !important;
+    overflow: hidden !important;
+    margin: 1px !important;
+}
+
+
+@media (min-width: 768px) {
+    .cardGlobal {
+        height: 20vw;
+        width: 20vw;
+        overflow: hidden;
+        margin: 7px;
+    }
+}
+
+@media (min-width: 992px) {
+    .cardGlobal {
+        height: 10vw;
+        width: 10vw;
+        overflow: hidden;
+        margin: 7px;
+    }
 }

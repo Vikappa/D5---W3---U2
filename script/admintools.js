@@ -24,14 +24,15 @@ class prodottoRicevuto {
     }
 
     buildCard() {
-        return `<div class="card productCard col-3 m-2">
-<img src="${this.imageUrl}" class="card-img-top" alt="${this.description}">
-<div class="card-body">
-  <h5 class="card-title>${this.name}</h5>
-  <p class="card-text fs-6">${this.description} , ${this.brand}, €${this.price}</p>
-  <a href="#" class="btn btn-primary" onclick=deleteProd("${this._id}") >Elimina</a>
-</div>
-</div>`
+        return `<div class="card productCard col-3 m-2 d-flex flex-column">
+        <img src="${this.imageUrl}" class="card-img-top" alt="${this.description}">
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">${this.name}</h5>
+            <p class="card-text fs-6">${this.description}, ${this.brand}, €${this.price}</p>
+            <a href="#" class="btn btn-danger mt-auto align-self-end" onclick="deleteProd('${this._id}')">Elimina</a>
+        </div>
+    </div>
+    `
     }
 
 }
