@@ -1,5 +1,5 @@
 let prodottiScaricati = []
-
+let carrello = []
 class prodottoRicevuto {
     constructor(name, description, brand, imageUrl, price, _id = "not generated", userID = "not generated", createdAt = "not generated", updatedat = "not generated", __V = "not generated") {
         this.name = name
@@ -45,6 +45,38 @@ const riempiGlobal = function (arrayGlobal) {
     }
 
     document.getElementById('containerAll').innerHTML = stringaGlobal
+}
+
+const aggiungiAlCarrello = function (id) { //aggiunge un oggetto prodotto all'array carrello partendo dall'id e scorrendo l'array di prodotti globali
+
+    for (let i = 0; i < prodottiScaricati.length; i++) {
+        let prodotto = prodottiScaricati[i]
+        if (prodotto._id === id) {
+            carrello.push(prodotto)
+            let carrelloStorato = JSON.stringify(carrello)
+            let chiaveStorage = "chiaveCarrello " + sessionPassword
+            console.log(chiaveStorage, carrelloStorato)
+        }
+    }
+    updateLinkCarrello()
+}
+
+const updateLinkCarrello = function () {
+
+    carrello = []
+
+
+
+    if (carrello.length <= 0) {
+        document.getElementById('linkCarrello').innerHTML = `<img src="./assets/media/cart.svg" alt="home" height="26"
+        class="d-inline-block align-text-top"> Carrello (0€)`
+    } else {
+        document.getElementById('linkCarrello').innerHTML = `<img src="./assets/media/cart.svg" alt="home" height="26"
+        class="d-inline-block align-text-top"> Carrello (0€)`
+    }
+
+
+
 }
 
 const sincronizzaProdottiScaricati = function () {
@@ -138,7 +170,7 @@ const modaleProdotto = function (idProdottoDaEsporre) {
                         <img class="img-fluid mx-auto" style="max-height: 350px" src="${prodottoDaEsporre.imageUrl}"
                         </div>
                         <div class="modal-footer">
-                        <a  href="./index.html"><button type="button" class="btn btn-success" onclick="aggiungiAlCarrello('${prodottoDaEsporre.id}')">Aggiugni al carrello €${prodottoDaEsporre.price}</button></a>
+                        <button type="button" class="btn btn-success" onclick="aggiungiAlCarrello('${prodottoDaEsporre._id}')">Aggiugni al carrello €${prodottoDaEsporre.price}</button>
                         <a  href="./index.html"><button type="button" class="btn btn-secondary">Chiudi</button>
                         </div>
                     </div>
@@ -153,3 +185,4 @@ const modaleProdotto = function (idProdottoDaEsporre) {
 //////////////////////////////////////////////////ESECUZIONE//////////////////////////////////////////////////////////
 sincronizzaProdottiScaricati()
 leggiSessionPassword()
+updateLinkCarrello()
