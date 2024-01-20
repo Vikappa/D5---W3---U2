@@ -63,36 +63,40 @@ const aggiungiAlCarrello = function (id) { //aggiunge un oggetto prodotto all'ar
 
 const updateLinkCarrello = function () {
     let passCorrenteSessione = sessionStorage.getItem('userPassword')
+    let memoriaStringata = localStorage.getItem('chiaveCarrello' + passCorrenteSessione)
+    try {
+        let carrelloCaricato = JSON.parse(memoriaStringata)
+        console.log(carrelloCaricato)
 
-    let memoriaStringata = localStorage.getItem("chiaveCarrelloaaa")
-    let carrelloCaricato = [...JSON.parse(memoriaStringata)]
-    console.log(carrelloCaricato)
-    document.getElementById('linkCarrello').innerHTML = `<img src="./assets/media/cart.svg" alt="home" height="26"
-    class="d-inline-block align-text-top"> Carrello (0€)`
+        if (carrelloCaricato.length > 0) {
+            console.log("Carrello storato non trovato")
+            document.getElementById('linkCarrello').innerHTML = `<img src="./assets/media/cart.svg" alt="home" height="26"
+            class="d-inline-block align-text-top"> Carrello (Soldi€)`
+        }
 
+        let internoDropDownCarrello = `<ul class="dropdown-menu rounded-1" id="dropDownCarrello">`
 
-    if (carrelloCaricato.length > 0) {
-        console.log("Carrello storato non trovato")
-        document.getElementById('linkCarrello').innerHTML = `<img src="./assets/media/cart.svg" alt="home" height="26"
-        class="d-inline-block align-text-top"> Carrello (Soldi€)`
-    }
-
-    let internoDropDownCarrello = `<ul class="dropdown-menu rounded-1" id="dropDownCarrello">`
-
-    if (carrelloCaricato.length = 0) {
-        internoDropDownCarrello += `<button>Vuot</button></ul>`
-
-    }
-    let totaleCash = 0
-    for (let index = 0; index < carrelloCaricato.length; index++) {
-        totaleCash += carrelloCaricato[index].price
-        internoDropDownCarrello += `<li><a class="dropdown-item" href="#">${carrelloCaricato}</a></li>`
-        if (index === (carrelloCaricato.length - 1)) {
-            internoDropDownCarrello += `<li><a class="dropdown-item" href="#">Totale: ${totaleCash}€</a></li>`
+        if (carrelloCaricato.length = 0) {
+            internoDropDownCarrello += `<button>Vuot</button></ul>`
 
         }
+        let totaleCash = 0
+        for (let index = 0; index < carrelloCaricato.length; index++) {
+            totaleCash += carrelloCaricato[index].price
+            internoDropDownCarrello += `<li><a class="dropdown-item" href="#">${carrelloCaricato}</a></li>`
+            if (index === (carrelloCaricato.length - 1)) {
+                internoDropDownCarrello += `<li><a class="dropdown-item" href="#">Totale: ${totaleCash}€</a></li>`
+
+            }
+        }
+        document.getElementById('dropDownCarrello').innerHTML = internoDropDownCarrello
+
+    } catch (e) {
+        console.error("Errore durante il parsing del carrello: ", e)
     }
-    document.getElementById('dropDownCarrello').innerHTML = internoDropDownCarrello
+
+    document.getElementById('linkCarrello').innerHTML = `<img src="./assets/media/cart.svg" alt="home" height="26"
+    class="d-inline-block align-text-top"> Carrello (0€)`
 }
 
 const sincronizzaProdottiScaricati = function () {
@@ -136,11 +140,9 @@ const scriviPassWord = function (inputPassword) {
     sessionStorage.setItem('userPassword', inputPassword)
     sessionPassword = inputPassword
     if (!sessionPassword) {
-        console.log("disabilito carrello")
         document.getElementById('linkCarrello').classList.add("disabled")
         document.getElementById('linkCarrello').classList.add("text-secondary")
     } else {
-        console.log("abilito carrello")
         document.getElementById('linkCarrello').classList.remove("disabled")
         document.getElementById('linkCarrello').classList.remove("text-secondary")
     }
