@@ -27,14 +27,13 @@ class prodottoRicevuto {
 let adminPassword = "abc"
 let inputPassword
 let sessionPassword
-
 inputPassword
 ////////////////////////////////////////////////// METODI ////////////////////////////////////////////////////////////
 const riempiGlobal = function (arrayGlobal) {
     let stringaGlobal = ``
     for (let index = 0; index < arrayGlobal.length; index++) {
         stringaGlobal = stringaGlobal +
-            `<div class="card cardGlobal" onclick="${modaleProdotto(arrayGlobal[index])}">
+            `<div class="card cardGlobal" onclick="modaleProdotto('${arrayGlobal[index]._id}')">
 <div class="card-img-overlay">
   <h5 class="card-title">${arrayGlobal[index].name}</h5>
   <p class="card-text"><small class="text-white">€${arrayGlobal[index].price}</small></p>
@@ -113,23 +112,33 @@ const leggiSessionPassword = function () {
     }
 }
 
-const modaleProdotto = function (prodottoDaEsporre) {
+const chiudiModale = function () {
+
+    document.querySelector('#modaleEsponiProdotto').remove()
+    //document.querySelector('.modal-backdrop fade show').classList.remove("show")
+    console.log(document.getElementsByClassName('modal-backdrop fade show')[0].remove())
+}
+
+const modaleProdotto = function (idProdottoDaEsporre) {
+
+    let prodottoDaEsporre = prodottiScaricati.find(prodotto => prodotto._id === idProdottoDaEsporre)
+
     let modalHTML = `
         <div class="modal fade" id="modaleEsponiProdotto" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modalLabel">Titolo del Modale</h5>
+                        <h5 class="modal-title" id="modalLabel">${prodottoDaEsporre.name}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        Contenuto del modale...
+                        ${prodottoDaEsporre.description}
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
-                        <button type="button" class="btn btn-primary">Salva cambiamenti</button>
+                    <button type="button" class="btn btn-primary">Aggiugni al carrello €${prodottoDaEsporre.price}</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="chiudiModale()">Chiudi</button>
                     </div>
                 </div>
             </div>
@@ -138,10 +147,11 @@ const modaleProdotto = function (prodottoDaEsporre) {
 
     // Aggiungi il modale al body
     document.body.insertAdjacentHTML('beforeend', modalHTML)
-
     // Inizializza e mostra il modale
-    //$('#modaleEsponiProdotto').modal('show')
+    let modaleFinale = new bootstrap.Modal(document.getElementById('modaleEsponiProdotto'))
 
+    // Mostra il modale
+    modaleFinale.show()
 }
 //////////////////////////////////////////////////ESECUZIONE//////////////////////////////////////////////////////////
 sincronizzaProdottiScaricati()
