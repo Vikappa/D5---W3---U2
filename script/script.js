@@ -29,7 +29,6 @@ class prodottoRicevuto {
 let adminPassword = "abc"
 let inputPassword
 let sessionPassword
-inputPassword
 ////////////////////////////////////////////////// METODI ////////////////////////////////////////////////////////////
 const riempiGlobal = function (arrayGlobal) {
     let stringaGlobal = ``
@@ -54,27 +53,26 @@ const aggiungiAlCarrello = function (id) { //aggiunge un oggetto prodotto all'ar
         if (prodotto._id === id) {
             carrello.push(prodotto)
             let carrelloStorato = JSON.stringify(carrello)
-            let chiaveStorage = "chiaveCarrello " + sessionPassword
-            console.log(chiaveStorage, carrelloStorato)
+            let chiaveStorage = "chiaveCarrello" + sessionPassword
+            localStorage.setItem(chiaveStorage, carrelloStorato)
         }
     }
-    updateLinkCarrello()
+    updateLinkCarrello(carrello)
 }
 
 const updateLinkCarrello = function () {
 
-    carrello = []
-
-
-
-    if (carrello.length <= 0) {
+    const carrelloRecuperato = localStorage.getItem('chiaveCarrello' + sessionPassword)
+    const carrelloDaSommare = JSON.parse(carrelloRecuperato)
+    if (carrelloDaSommare.length <= 0) {
+        console.log("Carrello storato non trovato")
         document.getElementById('linkCarrello').innerHTML = `<img src="./assets/media/cart.svg" alt="home" height="26"
         class="d-inline-block align-text-top"> Carrello (0€)`
     } else {
+        console.log("Carrello storato trovato")
         document.getElementById('linkCarrello').innerHTML = `<img src="./assets/media/cart.svg" alt="home" height="26"
-        class="d-inline-block align-text-top"> Carrello (0€)`
+        class="d-inline-block align-text-top"> Carrello (Soldi€)`
     }
-
 
 
 }
@@ -119,6 +117,16 @@ const sincronizzaProdottiScaricati = function () {
 const scriviPassWord = function (inputPassword) {
     sessionStorage.setItem('userPassword', inputPassword)
     sessionPassword = inputPassword
+    if (!sessionPassword) {
+        console.log("disabilito carrello")
+        document.getElementById('linkCarrello').classList.add("disabled")
+        document.getElementById('linkCarrello').classList.add("text-secondary")
+    } else {
+        console.log("abilito carrello")
+        document.getElementById('linkCarrello').classList.remove("disabled")
+        document.getElementById('linkCarrello').classList.remove("text-secondary")
+    }
+    updateLinkCarrello()
 }
 ///////////////////////////////////////////////// DOM CONTROL ///////////////////////////////////////////////////////
 document.getElementById('passForm').addEventListener('submit', function (event) {
@@ -154,6 +162,15 @@ const chiudiModale = function () {
 let prodottoDaEsporre = prodottiScaricati.find(prodotto => prodotto._id === idProdottoDaEsporre)
 
 const modaleProdotto = function (idProdottoDaEsporre) {
+    const pulsanteModale = function () {
+        if (!sessionPassword) {
+            console.log("disabilito aggiungi al carrello")
+            return `<button type="button" class="btn disabled " id="aggiungiAlCarrello" onclick="aggiungiAlCarrello('${prodottoDaEsporre._id}')">Login Necessario</button>`
+        } else {
+            console.log("abilito aggiungi al carrello")
+            return `<button type="button" class="btn btn-success" id="aggiungiAlCarrello" onclick="aggiungiAlCarrello('${prodottoDaEsporre._id}')">Aggiugni al carrello €${prodottoDaEsporre.price}</button>`
+        }
+    }
 
     let prodottoDaEsporre = prodottiScaricati.find(prodotto => prodotto._id === idProdottoDaEsporre)
 
@@ -170,7 +187,7 @@ const modaleProdotto = function (idProdottoDaEsporre) {
                         <img class="img-fluid mx-auto" style="max-height: 350px" src="${prodottoDaEsporre.imageUrl}"
                         </div>
                         <div class="modal-footer">
-                        <button type="button" class="btn btn-success" onclick="aggiungiAlCarrello('${prodottoDaEsporre._id}')">Aggiugni al carrello €${prodottoDaEsporre.price}</button>
+                        ${pulsanteModale()}
                         <a  href="./index.html"><button type="button" class="btn btn-secondary">Chiudi</button>
                         </div>
                     </div>
@@ -186,3 +203,13 @@ const modaleProdotto = function (idProdottoDaEsporre) {
 sincronizzaProdottiScaricati()
 leggiSessionPassword()
 updateLinkCarrello()
+
+if (!sessionPassword) {
+    console.log("disabilito carrello")
+    document.getElementById('linkCarrello').classList.add("disabled")
+    document.getElementById('linkCarrello').classList.add("text-secondary")
+} else {
+    console.log("abilito carrello")
+    document.getElementById('linkCarrello').classList.remove("disabled")
+    document.getElementById('linkCarrello').classList.remove("text-secondary")
+}
