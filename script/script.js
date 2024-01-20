@@ -85,7 +85,7 @@ const sincronizzaProdottiScaricati = function () {
 }
 
 const scriviPassWord = function (inputPassword) {
-    sessionStorage.setItem('adminTools', inputPassword)
+    sessionStorage.setItem('userPassword', inputPassword)
     sessionPassword = inputPassword
 }
 ///////////////////////////////////////////////// DOM CONTROL ///////////////////////////////////////////////////////
@@ -105,6 +105,14 @@ document.getElementById('passForm').addEventListener('submit', function (event) 
     scriviPassWord(inputPassword)
 })
 
+const leggiSessionPassword = function () {
 
+    if (sessionStorage.getItem('userPassword') === adminPassword) {
+        document.getElementById('adminTools').classList.remove('d-none')
+    } else {
+        document.getElementById('adminTools').classList.add('d-none')
+    }
+}
 //////////////////////////////////////////////////ESECUZIONE//////////////////////////////////////////////////////////
 sincronizzaProdottiScaricati()
+leggiSessionPassword()
