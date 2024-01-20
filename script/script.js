@@ -28,7 +28,7 @@ class prodottoRicevuto {
 /////////////////////////////////////// VARIABILI COMUNI PAGINA ///////////////////////////////////////////////////////
 let adminPassword = "abc"
 let inputPassword
-let sessionPassword
+let sessionPassword = sessionStorage.getItem('userPassword')
 ////////////////////////////////////////////////// METODI ////////////////////////////////////////////////////////////
 const riempiGlobal = function (arrayGlobal) {
     let stringaGlobal = ``
@@ -44,6 +44,7 @@ const riempiGlobal = function (arrayGlobal) {
     }
 
     document.getElementById('containerAll').innerHTML = stringaGlobal
+
 }
 
 const aggiungiAlCarrello = function (id) { //aggiunge un oggetto prodotto all'array carrello partendo dall'id e scorrendo l'array di prodotti globali
@@ -61,20 +62,37 @@ const aggiungiAlCarrello = function (id) { //aggiunge un oggetto prodotto all'ar
 }
 
 const updateLinkCarrello = function () {
+    let passCorrenteSessione = sessionStorage.getItem('userPassword')
 
-    const carrelloRecuperato = localStorage.getItem('chiaveCarrello' + sessionPassword)
-    const carrelloDaSommare = JSON.parse(carrelloRecuperato)
-    if (carrelloDaSommare.length <= 0) {
+    let memoriaStringata = localStorage.getItem("chiaveCarrelloaaa")
+    let carrelloCaricato = [...JSON.parse(memoriaStringata)]
+    console.log(carrelloCaricato)
+    document.getElementById('linkCarrello').innerHTML = `<img src="./assets/media/cart.svg" alt="home" height="26"
+    class="d-inline-block align-text-top"> Carrello (0€)`
+
+
+    if (carrelloCaricato.length > 0) {
         console.log("Carrello storato non trovato")
-        document.getElementById('linkCarrello').innerHTML = `<img src="./assets/media/cart.svg" alt="home" height="26"
-        class="d-inline-block align-text-top"> Carrello (0€)`
-    } else {
-        console.log("Carrello storato trovato")
         document.getElementById('linkCarrello').innerHTML = `<img src="./assets/media/cart.svg" alt="home" height="26"
         class="d-inline-block align-text-top"> Carrello (Soldi€)`
     }
 
+    let internoDropDownCarrello = `<ul class="dropdown-menu rounded-1" id="dropDownCarrello">`
 
+    if (carrelloCaricato.length = 0) {
+        internoDropDownCarrello += `<button>Vuot</button></ul>`
+
+    }
+    let totaleCash = 0
+    for (let index = 0; index < carrelloCaricato.length; index++) {
+        totaleCash += carrelloCaricato[index].price
+        internoDropDownCarrello += `<li><a class="dropdown-item" href="#">${carrelloCaricato}</a></li>`
+        if (index === (carrelloCaricato.length - 1)) {
+            internoDropDownCarrello += `<li><a class="dropdown-item" href="#">Totale: ${totaleCash}€</a></li>`
+
+        }
+    }
+    document.getElementById('dropDownCarrello').innerHTML = internoDropDownCarrello
 }
 
 const sincronizzaProdottiScaricati = function () {
@@ -126,6 +144,8 @@ const scriviPassWord = function (inputPassword) {
         document.getElementById('linkCarrello').classList.remove("disabled")
         document.getElementById('linkCarrello').classList.remove("text-secondary")
     }
+
+
     updateLinkCarrello()
 }
 ///////////////////////////////////////////////// DOM CONTROL ///////////////////////////////////////////////////////
@@ -146,9 +166,10 @@ document.getElementById('passForm').addEventListener('submit', function (event) 
 })
 
 const leggiSessionPassword = function () {
-
     if (sessionStorage.getItem('userPassword') === adminPassword) {
         document.getElementById('adminTools').classList.remove('d-none')
+        sessionPassword = sessionStorage.getItem('userPassword')
+
     } else {
         document.getElementById('adminTools').classList.add('d-none')
     }
@@ -205,11 +226,10 @@ leggiSessionPassword()
 updateLinkCarrello()
 
 if (!sessionPassword) {
-    console.log("disabilito carrello")
     document.getElementById('linkCarrello').classList.add("disabled")
     document.getElementById('linkCarrello').classList.add("text-secondary")
 } else {
-    console.log("abilito carrello")
     document.getElementById('linkCarrello').classList.remove("disabled")
     document.getElementById('linkCarrello').classList.remove("text-secondary")
 }
+
