@@ -28,6 +28,7 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="./style/variabiliBs.css">
     <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="./style/index.css">
 </head>
 
 <body>
@@ -38,18 +39,22 @@
                 <img src="./assets/media/headerIcon.png" alt="Logo" height="36" class="d-inline-block align-text-top">
                 GasparriShop
             </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item d-flex align-items-center mx-3">
+                    <li class="nav-item d-flex gap-2 align-items-center">
                         <img src="./assets/media/cravattaHome.svg" alt="home" height="28"
                             class="d-inline-block align-text-top"><a class="nav-link active" aria-current="page"
-                            href="#">Home</a>
+                            href="#" style="margin-right: 5px;"> Home</a>
                     </li>
 
                     <li class="nav-item d-flex align-items-center">
 
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown"
+                    <li class="nav-item dropdown my-auto">
+                        <a class="nav-link dropdown-toggle active m-0" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             <img src="./assets/media/cart.svg" alt="home" height="26"
                                 class="d-inline-block align-text-top"> Carrello(0€)
@@ -62,18 +67,29 @@
                     </li>
 
                     </li>
-                    <li class="nav-item d-flex align-items-center mx-3">
+                    <li class="nav-item d-flex gap-2 align-items-center">
                         <img src="./assets/media/cravatte.svg" alt="home" height="26"
                             class="d-inline-block align-text-top"><a class="nav-link active" aria-current="page"
-                            href="./biografia_gasparri.html">Info su Maurizio Gasparri</a>
+                            href="./biografia_gasparri.html"> Info su Maurizio Gasparri</a>
                     </li>
                 </ul>
+
+                <li class="nav-item dropdown d-inline flex-grow-1 px-1 ">
+
+                    <form class="d-flex flex-wrap flex-lg-nowrap align-items-baseline p-2">
+                        <label for="navbarPassword" class="form-label text-nowrap">Inserisci password: </label>
+                        <input type="password" placeholder="Inserisci password (admin = abc)" class="form-control ms-3"
+                            id="navbarPassword">
+                        <button type="submit" class="btn m-3 btn-primary">Login</button>
+                    </form>
+                </li>
+
                 <li class="nav-item dropdown ms-auto d-flex">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         Impostazioni
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
+                    <ul class="dropdown-menu dropdown-menu-lg-end">
                         <li><a class="dropdown-item" href="#">Settings</a></li>
                         <li><a class="dropdown-item d-none" id="adminTools" href="./adminTools.html">AdminTools</a></li>
                     </ul>
@@ -82,10 +98,61 @@
         </div>
     </nav>
 
+    <main>
+        <div class="container">
+
+            <div class="row mt-3">
+                <div class="col-8 col-md-4 mx-auto m-md-2">
+                    <img class="img-fluid" src="./assets/media/gasparriShop header.png">
+                </div>
+                <div class="col-8 col-md-7 p-3 mt-5">
+                    <h1>
+                        GasparriShop
+                    </h1>
+                    <div class="d-md-inline">
+                        <h4 class="p-0 ps-3 d-md-inline">Dal 1956</h4>
+                        <h4 class="p-0 ps-3 ps-md-0 d-md-inline">sinonimo di qualità.
+                        </h4>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row" id="vetrina">
+
+                <div class="container text-center my-3">
+                    <h2 class="font-weight-light">Suggerimenti di oggi:</h2>
+                    <div class="row mx-auto my-auto justify-content-center">
+                        <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner my-3" role="listbox" id="contenitoreCarouselItem">
+
+
+                            </div>
+                            <a class="carousel-control-prev bg-transparent w-aut" href="#recipeCarousel" role="button"
+                                data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            </a>
+                            <a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel" role="button"
+                                data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            </a>
+                        </div>
+                    </div>
+                    <h5 class="mt-2 fw-light">suggeriti dall'onorevole</h5>
+                </div>
+
+            </div>
+
+
+
+        </div>
+    </main>
+
     <script src="./script/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
+    <script src="./script/caroselloMultiItem.js"></script>
 </body>
 
 </html>

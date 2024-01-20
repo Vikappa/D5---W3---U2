@@ -20,18 +20,22 @@
                 <img src="./assets/media/headerIcon.png" alt="Logo" height="36" class="d-inline-block align-text-top">
                 GasparriShop
             </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item d-flex align-items-center mx-3">
+                    <li class="nav-item d-flex gap-2 align-items-center">
                         <img src="./assets/media/cravattaHome.svg" alt="home" height="28"
                             class="d-inline-block align-text-top"><a class="nav-link active" aria-current="page"
-                            href="#">Home</a>
+                            href="#" style="margin-right: 5px;"> Home</a>
                     </li>
 
                     <li class="nav-item d-flex align-items-center">
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown"
+                        <a class="nav-link dropdown-toggle active m-0" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
                             <img src="./assets/media/cart.svg" alt="home" height="26"
                                 class="d-inline-block align-text-top"> Carrello(0€)
@@ -44,10 +48,10 @@
                     </li>
 
                     </li>
-                    <li class="nav-item d-flex align-items-center mx-3">
+                    <li class="nav-item d-flex gap-2 align-items-center">
                         <img src="./assets/media/cravatte.svg" alt="home" height="26"
                             class="d-inline-block align-text-top"><a class="nav-link active" aria-current="page"
-                            href="#">Info su Maurizio Gasparri</a>
+                            href="./biografia_gasparri.html"> Info su Maurizio Gasparri</a>
                     </li>
                 </ul>
                 <li class="nav-item dropdown ms-auto d-flex">
@@ -55,11 +59,9 @@
                         aria-expanded="false">
                         Impostazioni
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
+                    <ul class="dropdown-menu dropdown-menu-lg-end">
                         <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item d-none" id="adminTools" href="#">AdminTools</a></li>
-                        <li><a class="dropdown-item d-none" id="logOutLink" href="#">LogOut</a></li>
-                        <li><a class="dropdown-item" href="#" id="logInLink">LogIn</a></li>
+                        <li><a class="dropdown-item d-none" id="adminTools" href="./adminTools.html">AdminTools</a></li>
                     </ul>
                 </li>
             </div>

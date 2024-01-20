@@ -29,7 +29,6 @@ let adminPassword = "abc"
 ///////////////////////////////////////////////// DOM CONTROL ///////////////////////////////////////////////////////
 const updateLoginLogoutLinks = function () {
     let inputPassword = localStorage.getItem("passwordGS")
-    console.log(inputPassword.length)
 
     if (inputPassword === adminPassword) {
         document.getElementById('adminTools').classList.remove('d-none')
@@ -38,6 +37,7 @@ const updateLoginLogoutLinks = function () {
 
     }
 }
+
 
 ////////////////////////////////////////////////// METODI ////////////////////////////////////////////////////////////
 
